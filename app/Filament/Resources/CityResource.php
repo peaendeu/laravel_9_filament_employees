@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class CityResource extends Resource
 {
   protected static ?string $model = City::class;
-
-  protected static ?string $navigationIcon = 'heroicon-o-collection';
+  protected static ?string $navigationIcon = 'heroicon-o-office-building';
+  protected static ?string $navigationGroup = 'System Management';
+  // protected static ?int $navigationSort = 3;
 
   public static function form(Form $form): Form
   {
@@ -25,7 +26,7 @@ class CityResource extends Resource
       ->schema([
         Forms\Components\Card::make()->schema([
           Forms\Components\Select::make('state_id')->required()->relationship('state', 'name'),
-          Forms\Components\TextInput::make('name')->required(),
+          Forms\Components\TextInput::make('name')->required()->maxLength(100),
         ])
       ]);
   }
